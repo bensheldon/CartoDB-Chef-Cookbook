@@ -59,7 +59,7 @@ sudo make install
 cd /home/ubuntu/downloads
 git clone https://github.com/Vizzuality/cartodb.git
 cd /home/ubuntu/downloads/cartodb
-sudo apt-get install -y python-setuptools
+sudo apt-get install -y python-dev python-setuptools libhiredis-dev
 sudo easy_install pip
 sudo pip install -r /home/ubuntu/downloads/cartodb/python_requirements.txt
 sudo pip install -e git+https://github.com/RealGeeks/python-varnish.git@0971d6024fbb2614350853a5e0f8736ba3fb1f0d#egg=python-varnish
