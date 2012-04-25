@@ -11,7 +11,7 @@ user "ubuntu"
 group "ubuntu"
 code <<-EOF
 sudo apt-get update
-sudo apt-get install -y build-essential libxslt-dev
+sudo apt-get install -y build-essential libxslt-dev libopenssl-ruby libcurl4-openssl-dev libssl-dev zlib1g-de
 mkdir /home/ubuntu/downloads
 cd /home/ubuntu/downloads
 bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
@@ -132,8 +132,6 @@ node app.js development >> /dev/null 2>&1  &
 cd /home/ubuntu/downloads/cartodb
 rails s -d
 bundle exec rake cartodb:db:setup EMAIL=username@mysubdomain.com SUBDOMAIN=mysubdomain PASSWORD=password ADMIN_PASSWORD=password
-sudo apt-get update
-sudo apt-get install -y build-essential libopenssl-ruby libcurl4-openssl-dev libssl-dev zlib1g-dev
 sudo sh -c "echo '127.0.0.1 admin.localhost.lan admin.testhost.lan' >> /etc/hosts"
 sudo sh -c "echo '127.0.0.1 my_subdomain.localhost.lan' >> /etc/hosts"
 cd /home/ubuntu/downloads
@@ -143,8 +141,6 @@ cd pcre-8.21
 ./configure
 make
 sudo make install
-sudo apt-get update
-sudo apt-get install -y build-essential libopenssl-ruby libcurl4-openssl-dev libssl-dev zlib1g-dev
 cd /home/ubuntu/downloads/cartodb/public
 gem install passenger
 rvmsudo passenger-install-nginx-module --auto --prefix=/usr/local/nginx --auto-download
