@@ -10,6 +10,8 @@ bash "Install RVM and Ruby" do
 user "ubuntu"
 group "ubuntu"
 code <<-EOF
+sudo apt-get update
+sudo apt-get install -y build-essential libxslt-dev
 mkdir /home/ubuntu/downloads
 cd /home/ubuntu/downloads
 bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
@@ -24,8 +26,6 @@ execute "Install CartoDB and dependencies " do
 user "ubuntu"
 group "ubuntu"
 command <<-EOH
-sudo apt-get update
-sudo apt-get install -y build-essential libxslt-dev
 mkdir /home/ubuntu/downloads 
 cd /home/ubuntu/downloads 
 sudo apt-get install -y git-core libssl-dev 
