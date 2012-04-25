@@ -124,26 +124,13 @@ sudo sh -c "echo 'host    all             all             127.0.0.1/32          
 sudo sh -c "echo 'host    all             all             ::1/128                 trust' >> /etc/postgresql/9.1/main/pg_hba.conf "
 sudo chown postgres:postgres /etc/postgresql/9.1/main/pg_hba.conf
 sudo /etc/init.d/postgresql restart
+bundle exec rake cartodb:db:setup EMAIL=username@mysubdomain.com SUBDOMAIN=mysubdomain PASSWORD=password ADMIN_PASSWORD=password
 redis-server >> /dev/null 2>&1 &
 cd /home/ubuntu/downloads/Windshaft-cartodb
 node app.js development >> /dev/null 2>&1  &
 cd /home/ubuntu/downloads/CartoDB-SQL-API
 node app.js development >> /dev/null 2>&1  &
 cd /home/ubuntu/downloads/cartodb
-rails s -d
-bundle exec rake cartodb:db:setup EMAIL=username@mysubdomain.com SUBDOMAIN=mysubdomain PASSWORD=password ADMIN_PASSWORD=password
-sudo sh -c "echo '127.0.0.1 admin.localhost.lan admin.testhost.lan' >> /etc/hosts"
-sudo sh -c "echo '127.0.0.1 my_subdomain.localhost.lan' >> /etc/hosts"
-cd /home/ubuntu/downloads
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.21.tar.gz
-tar xvf pcre-8.21.tar.gz
-cd pcre-8.21
-./configure
-make
-sudo make install
-cd /home/ubuntu/downloads/cartodb/public
-gem install passenger
-rvmsudo passenger-install-nginx-module --auto --prefix=/usr/local/nginx --auto-download
-sudo ldconfig
+rvmsudo rails s -d -p 80
 EOH
 end
