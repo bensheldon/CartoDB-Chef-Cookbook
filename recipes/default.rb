@@ -21,6 +21,7 @@ rvm pkg install zlib
 rvm install 1.9.2
 rvm use 1.9.2
 rvm use 1.9.2 --default
+gem install bundler
 EOF
 end
 execute "Install CartoDB and dependencies " do
@@ -110,7 +111,7 @@ mv ~/.rvm/usr/lib ~/.rvm/usr/lib_rvm
 rvm rvmrc trust "/home/ubuntu/downloads/cartodb/.rvmrc"
 cd /home/ubuntu/downloads/cartodb/
 rvm use 1.9.2@cartodb --create
-/home/ubuntu/.rvm/gems/ruby-1.9.2-p290@global/bin/bundle install --binstubs
+/home/ubuntu/.rvm/gems/ruby-1.9.2-p320@global/bin/bundle install --binstubs
 cp /home/ubuntu/downloads/cartodb/config/app_config.yml.sample /home/ubuntu/downloads/cartodb/config/app_config.yml
 cp /home/ubuntu/downloads/cartodb/config/database.yml.sample /home/ubuntu/downloads/cartodb/config/database.yml
 sed -i 's,some_secret,a0be302d0c2b616096974fdf0409a619,g' /home/ubuntu/downloads/cartodb/config/app_config.yml
